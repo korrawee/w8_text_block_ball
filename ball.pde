@@ -11,25 +11,26 @@ int bW = 50;
 int bH = 50;
 
 void setup(){
+  float sumArea = 0;
   size(600,600);
   blocks = new Block[amount]; /*create blocks array*/
   balls =new Ball[amount]; /*create balls array*/
-  
   for(int i = 0; i < blocks.length; i++){ 
     
     int tmpBallX = posX + (i * (size*2));
     balls[i] = new Ball(size, tmpBallX, posY + bH);/*create each ball's object*/
     balls[i].draw();/*show each ball*/
+    sumArea += balls[i].getArea();
     
     int tmpBlockX = posX + (i * bW); 
      blocks[i] =  new Block(tmpBlockX, posY, bW, bH); /*create each vlokc's object*/
      blocks[i].draw(); /*show each block*/
   }
+  print("sum of ball's areas = " + sumArea);
 }
 
 class Ball{
    float size;
- 
    int position_x;
    int position_y;
  
@@ -40,9 +41,13 @@ class Ball{
    }
  
    void draw(){
-     size = 2 * size; /*increase size to radian*/
+     size = (2 * size); /*increase size to radian*/
      fill(255);
-     ellipse(position_x, position_y, size, size);
+     ellipse(position_x * 2, position_y, size, size);
+   }
+   float getArea(){
+     float area = 3.14 * size * size;
+     return area;
    }
 }
 

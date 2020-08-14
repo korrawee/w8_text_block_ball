@@ -18,6 +18,7 @@ float Area;
 String[] bli = new String[amount];
 String[] bi = new String[amount];
 
+
 float sumAreaBall;
 float sumAreaBlock;
 
@@ -28,11 +29,12 @@ void setup()
   balls =new Ball[amount]; /*create balls array*/  
   
   for(int i = 0; i < amount; i++){
-    balls[i] = new Ball(size, posX, posY * (i+1));/*create each ball's object*/
-    bi[i] = "visible";    
+    balls[i] = new Ball(size, posX, posY * (i+1),i);/*create each ball's object*/
+    bi[i] = "visible";
     
-    blocks[i] =  new Block(posX * 2, posY * (i+1), bW, bH); /*create each vlokc's object*/
+    blocks[i] =  new Block(posX * 2, posY * (i+1), bW, bH,i); /*create each vlokc's object*/
     bli[i] = "visible";
+    
   }
 }
 void draw()
@@ -52,7 +54,7 @@ void draw()
       if(mouseX > blocks[i].posX && mouseX < blocks[i].posX + bW &&
         mouseY > blocks[i].posY && mouseY < blocks[i].posY + bH){
         blocks[i].invisible(bli[i]); 
-        if(bli[i] == "visible"){
+        if(bli[i] == "visible"&& i%2 != 0){
           bli[i] = "invisible";
         }else if(bli[i] == "invisible"){
           bli[i] = "visible";
@@ -60,7 +62,7 @@ void draw()
       }//block
       if(sqrt( sq(mouseX - balls[i].posX) + sq(mouseY - balls[i].posY) ) < balls[i].size/2){
         balls[i].invisible(bi[i]); 
-        if(bi[i] == "visible"){
+        if(bi[i] == "visible" && i%2 != 0){
           bi[i] = "invisible";
         }else if(bi[i] == "invisible"){
           bi[i] = "visible";
@@ -101,30 +103,41 @@ void displayArea(float ball, float block){
 class Ball
 {
    int state = 1;
+   int rgb;
    float size;
    float area;
  
    float posX;
    float posY;
- 
-   Ball(float s, int x, int y)
+   
+   Ball(float s, int x, int y ,int i)
    {
      size = s;
      posX = x;
      posY = y;
      area = 3.14 * size * size;
+     rgb = i;
    }
  
    void draw()
    {
-     if(state == 1){
-       fill(color( random(0,255), random(0,255), random(0,255), random(0,255)));
-       ellipse(posX, posY, size, size);
+     if(state == 1)
+     {
+       if (rgb%2 == 0)
+       {  
+         fill(color( random(0,255), random(0,255), random(0,255), random(0,255)));
+         ellipse(posX, posY, size, size);
+       }
+       else
+       {
+         fill(200);
+         ellipse(posX, posY, size, size);
+       }
      }
-    }
+   }
    void invisible(String bi)
   {
-    if(bi == "visible"){
+    if(bi == "visible" && rgb%2 != 0){
      fill(#FFFFFF);
      ellipse(posX, posY, size, size);
      fill(200);
@@ -144,29 +157,41 @@ class Block
   int bWidth;
   int bHeight;
   int area;
+  int rgb;
   
-   Block(int x, int y, int bW, int bH)
+   Block(int x, int y, int bW, int bH, int i)
    {
      posX = x;
      posY = y;
      bWidth = bW;
      bHeight = bH;
      area = size * size;
+     rgb = i;
 
    }
  
  void draw()
  {
-   if(state == 1){
-   fill(color( random(0,255), random(0,255), random(0,255), random(0,255)));
-   rectMode(CORNER);
-   rect(posX, posY, bWidth, bHeight);  
+   if(state == 1)
+   {
+     if(rgb%2 == 0)
+     {
+       fill(color( random(0,255), random(0,255), random(0,255), random(0,255)));
+       rectMode(CORNER);
+       rect(posX, posY, bWidth, bHeight);  
+     }
+     else
+     {
+       fill(200);
+       rectMode(CORNER);
+       rect(posX, posY, bWidth, bHeight);  
+     }
    }
  }
  
   void invisible(String bi)
   {
-    if(bi == "visible"){
+    if(bi == "visible" && rgb%2 != 0){
      fill(#FFFFFF);
      rectMode(CORNER);
      rect(posX, posY, bWidth, bHeight);

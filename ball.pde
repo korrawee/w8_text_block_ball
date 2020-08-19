@@ -1,6 +1,5 @@
 /*declare array of objects*/
 Block[] blocks;
-//Ball[] balls;
 
 StringList ballvisibility;
 StringList blockvisibility;
@@ -16,7 +15,7 @@ int bH = 50;
 float Area;
 
 String[] bli = new String[amount];
-String[] bi = new String[amount];
+String[][] bi = new String[amount][amount];
 
 float sumAreaBall;
 float sumAreaBlock;
@@ -31,9 +30,8 @@ void setup()
     //balls[i] = new Ball(size, posX, posY * (i+1));/*create each ball's object*/
   /*  bi[i] = "visible";  */  
     
-    blocks[i] =  new Block(posX * 2, posY * (i+1), bW, bH, amount); /*create each vlokc's object*/
+    blocks[i] =  new Block(posX * 2, posY * (i+1), bW, bH, amount, i); /*create each vlokc's object*/
      bli[i] = "visible";
-     bi[i] = "visible";
   } 
 }
 void draw()
@@ -47,27 +45,31 @@ void draw()
     //balls[i].draw();/*show each ball*/
     blocks[i].draw(); /*show each block*/
     for(int j = 0; j < amount; j++){
-    blocks[i].balls[j].draw();
+      blocks[i].balls[j].draw();
     }
+
     /*Mouse Events*/
     if(mousePressed){
       delay(50);
       if(mouseX > blocks[i].posX && mouseX < blocks[i].posX + bW &&
         mouseY > blocks[i].posY && mouseY < blocks[i].posY + bH){
         blocks[i].invisible(bli[i]); 
-        if(bli[i] == "visible"){
+
+        if(bli[i] == "visible"&& i%2 != 0){
           bli[i] = "invisible";
         }else if(bli[i] == "invisible"){
           bli[i] = "visible";
         }
       }//block
-      if(sqrt( sq(mouseX - blocks[i].balls[i].posX) + sq(mouseY - blocks[i].balls[i].posY) ) < blocks[i].balls[i].size/2){
-        blocks[i].balls[i].invisible(bi[i]); 
-        if(bi[i] == "visible"){
-          bi[i] = "invisible";
-        }else if(bi[i] == "invisible"){
-          bi[i] = "visible";
-        }
+      for(int j = 0; j < amount; j++){
+          if(sqrt( sq(mouseX - blocks[i].balls[j].posX) + sq(mouseY - blocks[i].balls[j].posY) ) < blocks[i].balls[j].size/2){
+            blocks[i].balls[j].invisible(bi[i][j]); 
+            if(bi[i][j] == "visible" && i%2 != 0){
+              bi[i][j] = "invisible";
+            }else if(bi[i][j] == "invisible"){
+              bi[i][j] = "visible";
+            }
+       }
       }//balls
     }//mousePressed
   }//display loop
@@ -81,8 +83,10 @@ float sumArea(String name){
   float result = 0;
   if(name == "ball"){
     for(int i = 0; i < blocks.length; i++){
-      if(bi[i] == "visible"){
-        result += blocks[i].balls[i].area;
+      for(int j = 0; j < amount; j++){
+        if(bi[i][j] == "visible"){
+          result += blocks[i].balls[i].area;
+        }
       }
     }
   }else if(name == "block"){
@@ -104,30 +108,42 @@ void displayArea(float ball, float block){
 class Ball
 {
    int state = 1;
+   int rgb;
    float size;
    float area;
- 
+
    float posX;
    float posY;
- 
-   Ball(float s, int x, int y)
+
+   Ball(float s, int x, int y ,int i)
    {
      size = s;
      posX = x;
      posY = y;
      area = 3.14 * size * size;
+
+     rgb = i;
    }
  
    void draw()
    {
-     if(state == 1){
-       fill(200);
-       ellipse(posX, posY, size, size);
+     if(state == 1)
+     {
+       if (rgb%2 == 0)
+       {  
+         fill(color( random(0,255), random(0,255), random(0,255), random(0,255)));
+         ellipse(posX, posY, size, size);
+       }
+       else
+       {
+         fill(200);
+         ellipse(posX, posY, size, size);
+       }
      }
-    }
+   }
    void invisible(String bi)
   {
-    if(bi == "visible"){
+    if(bi == "visible" && rgb%2 != 0){
      fill(#FFFFFF);
      ellipse(posX, posY, size, size);
      fill(200);
@@ -149,20 +165,22 @@ class Block
   int bWidth;
   int bHeight;
   int area;
+  int rgb;
   int amount;
-   Block(int x, int y, int bW, int bH,int amt)
+   Block(int x, int y, int bW, int bH,int amt,int i)
    {
      amount = amt;
      balls = new Ball[10]; /*create balls array*/  
+     
      posX = x;
      posY = y;
      bWidth = bW;
      bHeight = bH;
      area = size * size;
+     rgb = i;
      this.createBall();
      
    }
-   
  void createBall(){
      int size = bWidth / amount; // rect_width / amount of ball 50/10
      int ballX;
@@ -174,24 +192,34 @@ class Block
          ballX =  posX + (j * size) + size; // ((50) + (j* 10) + (5/10)
          ballY =  (posY + (i * size)) + (size); // 
          
-         balls[index] = new Ball(size, ballX, ballY);/*create each ball's object*/
+         balls[index] = new Ball(size, ballX, ballY, i);/*create each ball's object*/
          index += 1;
+         bi[i][j] = "visible";       
        }
-       bi[i] = "visible";       
      }
  }
  void draw()
  {
-   if(state == 1){
-   fill(200);
-   rectMode(CORNER);
-   rect(posX, posY, bWidth, bHeight);  
+   if(state == 1)
+   {
+     if(rgb%2 == 0)
+     {
+       fill(color( random(0,255), random(0,255), random(0,255), random(0,255)));
+       rectMode(CORNER);
+       rect(posX, posY, bWidth, bHeight);  
+     }
+     else
+     {
+       fill(200);
+       rectMode(CORNER);
+       rect(posX, posY, bWidth, bHeight);  
+     }
    }
  }
  
   void invisible(String bi)
   {
-    if(bi == "visible"){
+    if(bi == "visible" && rgb%2 != 0){
      fill(#FFFFFF);
      rectMode(CORNER);
      rect(posX, posY, bWidth, bHeight);

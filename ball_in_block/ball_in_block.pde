@@ -55,8 +55,7 @@ void draw()
       if(mouseX > blocks[i].posX && mouseX < blocks[i].posX + bW &&
         mouseY > blocks[i].posY && mouseY < blocks[i].posY + bH){
         blocks[i].invisible(bli[i]); 
-
-        if(bli[i] == "visible"){
+        if(bli[i] == "visible"){  //if visible block clicked then change its stage
           bli[i] = "invisible";
         }else if(bli[i] == "invisible"){
           bli[i] = "visible";
@@ -65,7 +64,7 @@ void draw()
       for(int j = 0; j < amount; j++){
           if(sqrt( sq(mouseX - blocks[i].balls[j].posX) + sq(mouseY - blocks[i].balls[j].posY) ) < blocks[i].balls[j].size/2){
             blocks[i].balls[j].invisible(bi[i][j]); 
-            if(bi[i][j] == "visible"){
+            if(bi[i][j] == "visible"){  //if visible ball clicked then change its stage
               bi[i][j] = "invisible";
             }else if(bi[i][j] == "invisible"){
               bi[i][j] = "visible";

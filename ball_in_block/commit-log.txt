@@ -1,0 +1,105 @@
+commit a8e819ac7909e64c84b83e07c90f9a9797f7a50f
+Author: korrawee <korrawee.somyos@gmail.com>
+Date:   Tue Aug 25 16:07:24 2020 +0700
+
+    Add comment Block and ball can hide and show
+
+commit bbd2b5d00a7b97d50040cd8cdc090cd3d93a93b4
+Author: korrawee <korrawee.somyos@gmail.com>
+Date:   Tue Aug 25 16:04:50 2020 +0700
+
+    delete show area function
+
+commit 084f546873e9ffe671d4acd67b33c8dfc8f54ca0
+Author: korrawee <korrawee.somyos@gmail.com>
+Date:   Tue Aug 25 15:51:42 2020 +0700
+
+    add floder and Edit ball and block's color grey
+
+commit 13aef700e013babe897c7635f83f25bca1290ea6
+Merge: f3d8dae 84512da
+Author: korrawee <korrawee.somyos@gmail.com>
+Date:   Thu Aug 20 02:16:31 2020 +0700
+
+    Fix conflict and Hide odd block when clicked
+
+commit f3d8dae2fdbf4c5ee17f3d8f9a1aad35bbb81dad
+Author: korrawee <korrawee.somyos@gmail.com>
+Date:   Thu Aug 20 01:41:52 2020 +0700
+
+    Add method createBall in Block class and move ball inside each block
+
+commit 84512da5981e52e9d7c3cb7c4f754b499e451b0f
+Author: Pannawat Kingkaew <s6201012620163@email.kmutnb.ac.th>
+Date:   Fri Aug 14 11:56:31 2020 +0700
+
+    special ball&block
+
+commit 850b8b79dff2b2d59fb57126a43e1a246c3d8af4
+Author: Pannawat Kingkaew <s6201012620163@email.kmutnb.ac.th>
+Date:   Fri Aug 14 11:03:12 2020 +0700
+
+    RGB
+
+commit 728e500310e83cb50631658f4f85d8b7d1484908
+Author: PosEnough <wavemaza555@gmail.com>
+Date:   Fri Aug 14 05:16:25 2020 +0700
+
+    fix conflict
+
+commit 26dabea67b3f8c7c0473fd59e61f2cf2268023f0
+Merge: 825f12e cb6186d
+Author: PosEnough <wavemaza555@gmail.com>
+Date:   Fri Aug 14 05:01:34 2020 +0700
+
+    update error conflict
+
+commit 825f12e9dc6bfeff9f3f6a9f16a4d1a92eaf8a62
+Author: PosEnough <wavemaza555@gmail.com>
+Date:   Fri Aug 14 04:52:53 2020 +0700
+
+    Add calculate sum of area function, Upgrade invisible method and Upgrade display box
+
+commit cb6186de47cea15980bee59267978e1a0064c3f4
+Author: Tunlaya-Sanphokha <69080191+Tunlaya-Sanphokha@users.noreply.github.com>
+Date:   Fri Aug 14 00:12:05 2020 +0700
+
+    show area on widget
+    
+    show area on widget
+
+commit 206f0e55c80debb3a15959f2168ceb09cf8c5e1c
+Author: Pannawat Kingkaew <69412320+PannawatKingkaew@users.noreply.github.com>
+Date:   Thu Aug 13 16:51:59 2020 +0700
+
+    change all color and sum of area when click
+
+commit 945d1175cf406f3f0a0b62eb93d42620fc51f410
+Author: Pannawat Kingkaew <69412320+PannawatKingkaew@users.noreply.github.com>
+Date:   Thu Aug 13 16:50:36 2020 +0700
+
+    Add files via upload
+
+commit 937dc700f7a2cb5e0b1eddc98e368b3a7ec5d284
+Author: Tunlaya Sanphokha <s6201012620341@email.kmutnb.ac.th>
+Date:   Tue Aug 11 15:57:09 2020 +0700
+
+    Create getArea method in class Block and display sun of block's areas on console.log
+
+commit 1c448f5bf9c9ad7e245319e5b447a96e8a2a632e
+Author: korrawee <korrawee.somyos@gmail.com>
+Date:   Tue Aug 11 15:36:15 2020 +0700
+
+    Create getArea method in class Ball and display sum of ball's areas on console.log
+
+commit 31a50f0a2ca37396ebca59abaad78350f7993d4d
+Author: korrawee <korrawee.somyos@gmail.com>
+Date:   Fri Aug 7 12:46:46 2020 +0700
+
+    Create class's block and method draw
+
+commit 3fca20d7bc5819d5e41ad9af6e147a513ba058fe
+Author: korrawee <korrawee.somyos@gmail.com>
+Date:   Fri Aug 7 11:02:34 2020 +0700
+
+    Create class's ball and method draw
